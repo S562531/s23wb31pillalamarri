@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let apple=[{apple_name:"Empire",apple_price:20,apple_weight:32},{apple_name:"Gala",apple_price:25,apple_weight:82},{apple_name:"Granny Smith",apple_price:26,apple_weight:57}]
+  div(class="container-fluid")
+  div(class="row")
+  each value,indexNo in apple
+    div(class="col-sm-2" onclick=`buy(${indexNo})`)  #{value.apple_name} Apple, Price is #{value.apple_price}, weight #{value.apple_weight}
+  script. 
+    function buy(indexNo){
+    
+      alert(`You purchased Item ${indexNo+1}`)
+    }
