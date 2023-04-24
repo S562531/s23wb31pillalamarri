@@ -2,13 +2,24 @@ extends layout
 
 block content
   h1= title
-  - let items=results
-  div(class="container-fluid")
-  div(class="row")
-  each value,indexNo in items
-    div(class="col-sm-2" onclick=`buy(${indexNo})`)  #{value.apple_name} Apple, Price is #{value.apple_price}, weight #{value.apple_weight}
-  script. 
-    function buy(indexNo){
-    
-      alert(`You purchased Item ${indexNo+1}`)
+  - let items = results;
+  - let o;
+  script.
+    function buy(x){
+      alert('purchased item ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row m-1')
+    div(class="row row-cols-1 row-cols-sm-4 g-6")
+      each item,index in items
+        - let destination = `dispatch(\"/apple/update?id=${item._id}\")`
+      
+        div(class="card text-white bg-dark mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') Item #{item.apple_name}(#{item.apple_price})is #{item.apple_weight} 
+
+          <br>
+          button.btn( class="btn-success ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
     }

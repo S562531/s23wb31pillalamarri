@@ -1,0 +1,27 @@
+extends layout
+
+block content
+ h1= title
+
+  if(toShow == null)
+    h2 No instance to detail
+  else
+    - let appleid = toShow._id
+    - let apple_name = toShow.apple_name
+    - let apple_price = toShow.apple_price
+    - let apple_weight = toShow.apple_weight
+    - let actionid = "/resource/apples/" + appleid
+    script let actionid = "#{actionid}"
+    div
+    div.row
+    div(class='appleAttr mr-3') Apple ID is: 
+       div #{appleid}
+    div.row
+    div(class='appleAttr mr-3') Apple name is: 
+       div #{apple_name}
+    div.row
+    div(class='appleAttr mr-3') Apple price is: 
+       div #{apple_price}
+    div.row
+    div(class='appleAttr mr-3') Apple weight is:
+      div #{apple_weight}

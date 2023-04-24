@@ -1,0 +1,28 @@
+extends layout
+block content
+ h1= title
+ form(id='appleForm', action="/resource/apples", method="POST")
+  div.form-group
+   label.appleAttr(for='apple_name') apple name
+   input#apple_name(type='text', name='apple_name')
+  div.form-group
+   label.appleAttr(for='apple_price') apple price
+   input#apple_price(type='text', name='apple_price')
+  div.form-group
+   label.appleAttr(for='apple_weight') apple weight 
+   input#apple_weight(type='text', name='apple_weight')
+  input(type="submit")
+ script.
+  document.forms['appleForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.json();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   }); 
